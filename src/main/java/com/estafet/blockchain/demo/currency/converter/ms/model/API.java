@@ -1,4 +1,4 @@
-package com.estafet.blockchain.demo.ms.currency.converter.ms.model;
+package com.estafet.blockchain.demo.currency.converter.ms.model;
 
 public class API {
 

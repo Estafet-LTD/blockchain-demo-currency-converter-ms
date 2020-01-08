@@ -1,4 +1,4 @@
-package com.estafet.blockchain.demo.ms.currency.converter.ms;
+package com.estafet.blockchain.demo.currency.converter.ms;
 
 import javax.jms.ConnectionFactory;
 
