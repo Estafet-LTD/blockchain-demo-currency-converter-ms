@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Dennis (generated)" id="1578477550751-1">
+        <createSequence sequenceName="exchange_rate_id_seq"/>
+    </changeSet>
+    <changeSet author="Dennis (generated)" id="1578477550751-2">
+        <createTable tableName="exchange_rate">
+            <column name="exchange_rate_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="from_currency" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rate" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="to_currency" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Dennis (generated)" id="1578477550751-3">
+        <addPrimaryKey columnNames="exchange_rate_id" constraintName="exchange_rate_pkey" tableName="exchange_rate"/>
+    </changeSet>
+</databaseChangeLog>
