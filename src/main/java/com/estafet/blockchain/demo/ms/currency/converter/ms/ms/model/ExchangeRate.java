@@ -1,4 +1,4 @@
-package com.estafet.blockchain.demo.ms.currency.converter.model;
+package com.estafet.blockchain.demo.ms.currency.converter.ms.ms.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.estafet.blockchain.demo.ms.currency;
+package com.estafet.blockchain.demo.ms.currency.converter.ms;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
