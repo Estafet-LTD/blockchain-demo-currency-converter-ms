@@ -51,7 +51,7 @@ public class CurrencyConverterController {
 		return new ResponseEntity<ExchangeRate>(currencyConverterService.newExchangeRate(exchangeRate), HttpStatus.OK);
 	}
 
-	@PutMapping("exchange-rate")
+	@PutMapping("/exchange-rate")
 	public ResponseEntity<ExchangeRate> updateRate(@RequestBody ExchangeRate exchangeRate) {
 		return new ResponseEntity<ExchangeRate>(currencyConverterService.updateExchangeRate(exchangeRate), HttpStatus.OK);
 	}
@@ -62,7 +62,7 @@ public class CurrencyConverterController {
 		return new ResponseEntity<String>("Exchange Rates Deleted", HttpStatus.OK);
 	}
 	*/
-	@PostMapping("/testCurrencyConverter ")
+	@PostMapping("/testCurrencyConverter")
 	public ResponseEntity<BankPaymentMessage> calculateSprints(@RequestBody BankPaymentCurrencyConverterMessage bankToCurrencyConvMessage) {
 		return new ResponseEntity<BankPaymentMessage>(currencyConverterService.convert(bankToCurrencyConvMessage), HttpStatus.OK);
 	}
