@@ -1,4 +1,4 @@
-package com.estafet.blockchain.demo.ms.currency.converter.ms.jms;
+package com.estafet.blockchain.demo.currency.converter.ms.jms;
 
 import java.util.UUID;
 

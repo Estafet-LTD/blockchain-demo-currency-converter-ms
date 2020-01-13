@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentCurrencyConverterMessage;
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentMessage;
-import com.estafet.blockchain.demo.ms.currency.converter.ms.jms.BankPaymentProducer;
 import com.estafet.blockchain.demo.currency.converter.ms.dao.CurrencyConverterDAO;
+import com.estafet.blockchain.demo.currency.converter.ms.jms.BankPaymentProducer;
 import com.estafet.blockchain.demo.currency.converter.ms.model.ExchangeRate;
 
 
