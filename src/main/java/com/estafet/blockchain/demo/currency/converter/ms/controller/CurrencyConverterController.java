@@ -67,5 +67,5 @@ public class CurrencyConverterController {
 		return new ResponseEntity<BankPaymentMessage>(currencyConverterService.convert(bankToCurrencyConvMessage), HttpStatus.OK);
 	}
 		
-		
-}
+}	
+
