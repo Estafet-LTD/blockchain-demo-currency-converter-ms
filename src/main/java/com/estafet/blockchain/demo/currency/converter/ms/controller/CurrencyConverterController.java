@@ -51,8 +51,8 @@ public class CurrencyConverterController {
 		return new ResponseEntity<ExchangeRate>(currencyConverterService.newExchangeRate(exchangeRate), HttpStatus.OK);
 	}
 
-	@PutMapping("exchange-rate/{currency}")
-	public ResponseEntity<ExchangeRate> updateRate(@PathVariable String currency,@RequestBody ExchangeRate exchangeRate) {
+	@PutMapping("exchange-rate")
+	public ResponseEntity<ExchangeRate> updateRate(@RequestBody ExchangeRate exchangeRate) {
 		return new ResponseEntity<ExchangeRate>(currencyConverterService.updateExchangeRate(exchangeRate), HttpStatus.OK);
 	}
 /*
