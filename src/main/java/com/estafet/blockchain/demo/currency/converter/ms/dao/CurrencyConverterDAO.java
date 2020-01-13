@@ -18,7 +18,7 @@ public class CurrencyConverterDAO {
 
 	
 	public ExchangeRate getExchangeRate(String currency) {
-		ExchangeRate exchangeRate = (ExchangeRate) entityManager.createQuery("SELECT t FROM EXCHANGE_RATE t where t.CURRENCY = :value1")
+		ExchangeRate exchangeRate = (ExchangeRate) entityManager.createQuery("SELECT t FROM ExchangeRate t where t.CURRENCY = :value1")
                 .setParameter("value1", currency).getSingleResult();
 		return exchangeRate;
 				
@@ -43,12 +43,12 @@ public class CurrencyConverterDAO {
 	}
 
 	public List<ExchangeRate> getExchangeRates() {
-		return entityManager.createQuery("select * from EXCHANGE_RATE", ExchangeRate.class)
+		return entityManager.createQuery("select t from ExchangeRate t", ExchangeRate.class)
 				.getResultList();
 	}
 	
 	public int deleteAll() {
-		return entityManager.createQuery("DELETE FROM EXCHANGE_RATE").executeUpdate();
+		return entityManager.createQuery("DELETE FROM ExchangeRate").executeUpdate();
 	}
 
 }
