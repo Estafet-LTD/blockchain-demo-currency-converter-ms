@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<exchangeRate currency="GBP" rate="1.26"/>
-	<exchangeRate currency="USD" rate="0.845"/>
+	<EXCHANGE_RATE currency="GBP" rate="1.26"/>
+	<EXCHANGE_RATE currency="USD" rate="0.845"/>
 </dataset>
