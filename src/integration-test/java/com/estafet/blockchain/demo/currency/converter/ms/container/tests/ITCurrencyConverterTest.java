@@ -16,7 +16,6 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentCurrencyConverterMessage;
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentMessage;
 import com.estafet.microservices.scrum.lib.commons.properties.PropertyUtils;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
