@@ -63,7 +63,7 @@ public class CurrencyConverterService {
 	public BankPaymentMessage convert(BankPaymentCurrencyConverterMessage bankToCurrencyConvMessage) {
 		ExchangeRate exchangeRate = currencyConverterDAO.getExchangeRate(bankToCurrencyConvMessage.getCurrency());
 		return bankPaymentProducer.sendMessage(new BankPaymentMessage(exchangeRate.convert(bankToCurrencyConvMessage.getCurrencyAmount()),
-				bankToCurrencyConvMessage.getWalletAddress(), "ddhshs", bankToCurrencyConvMessage.getTransactionId()));
+				bankToCurrencyConvMessage.getWalletAddress(), bankToCurrencyConvMessage.getSignature(), bankToCurrencyConvMessage.getTransactionId()));
 	}
 
 
