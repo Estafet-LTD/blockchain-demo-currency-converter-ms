@@ -97,7 +97,7 @@ public class ITCurrencyConverterTest {
 				.body("amount", equalTo(70.056f))
 				.body("walletAddress", is("123456"))
 				.body("signature", is("314249"))
-				.body("walletAddress", is("987654321"));
+				.body("transactionId", is("987654321"));
 	}
 
 	@Test
