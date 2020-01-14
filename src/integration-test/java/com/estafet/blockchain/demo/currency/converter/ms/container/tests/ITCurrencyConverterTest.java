@@ -47,7 +47,7 @@ public class ITCurrencyConverterTest {
 		get("exchange-rate/GBP").then()
 			.statusCode(HttpURLConnection.HTTP_OK)
 			.body("currency", is("GBP"))
-			.body("rate", is("1.26"));
+			.body("rate", is(1.26));
 	}
 
 	@Test
@@ -56,45 +56,45 @@ public class ITCurrencyConverterTest {
 		get("exchange-rates").then()
 		.statusCode(HttpURLConnection.HTTP_OK)
 		.body("currency", hasItems("GBP", "USD"))
-		.body("rate",  hasItems("1.26","0.845"));
+		.body("rate",  hasItems(1.26,0.845));
 	}
 
 	@Test
 	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testUpdateExchangeRate() {
 		given().contentType(ContentType.JSON)
-			.body("{\"currency\": \"GBP\", \"rate\": \"41.645\" }")
+			.body("{\"currency\": \"GBP\", \"rate\": 41.645 }")
 			.when()
 				.put("/exchange-rate")
 			.then()
 				.statusCode(HttpURLConnection.HTTP_OK)
 				.body("currency", is("GBP"))
-				.body("rate", is("41.645"));
+				.body("rate", is(41.645));
 	}
 	
 	@Test
 	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testCreateExchangeRate() {
 		given().contentType(ContentType.JSON)
-			.body("{\"currency\": \"LEV\", \"rate\": \"2.456\" }")
+			.body("{\"currency\": \"LEV\", \"rate\": 2.456 }")
 			.when()
 				.post("/exchange-rate")
 			.then()
 				.statusCode(HttpURLConnection.HTTP_OK)
 				.body("currency", is("LEV"))
-				.body("rate", is("2.456"));
+				.body("rate", is(2.456));
 	}
 	
 	@Test
 	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testCurrencyConverter() {
 		given().contentType(ContentType.JSON)
-			.body("{\"currencyAmount\": \"55.6\", \"currency\": \"GBP\", \"walletAddress\": \"123456\", \"signature\": \"314249\", \"transactionId\": \"987654321\" }")
+			.body("{\"currencyAmount\": 55.6, \"currency\": \"GBP\", \"walletAddress\": \"123456\", \"signature\": \"314249\", \"transactionId\": \"987654321\" }")
 			.when()
 				.post("/testCurrencyConverter")
 			.then()
 				.statusCode(HttpURLConnection.HTTP_OK)
-				.body("amount", is("70.056"))
+				.body("amount", is(70.056))
 				.body("walletAddress", is("123456"))
 				.body("signature", is("314249"))
 				.body("walletAddress", is("987654321"));
@@ -103,7 +103,7 @@ public class ITCurrencyConverterTest {
 	@Test
 	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testConsumeNewWalletCurrencyConverterMessage() {
-		CurrenyConverterTopicProducer.send("{\"currencyAmount\": \"305678\", \"currency\": \"USD\", \"walletAddress\": \"345678\", \"signature\": \"32423432\", \"transactionId\": \"2481632\" }");
+		CurrenyConverterTopicProducer.send("{\"currencyAmount\": 305678, \"currency\": \"USD\", \"walletAddress\": \"345678\", \"signature\": \"32423432\", \"transactionId\": \"2481632\" }");
 		BankPaymentMessage message = topic.consume();
 		assertEquals("258297.91", message.getAmount());
 		assertEquals("345678", message.getWalletAddress());
