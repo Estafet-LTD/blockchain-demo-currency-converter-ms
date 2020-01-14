@@ -60,21 +60,6 @@ public class ITCurrencyConverterTest {
 	}
 
 	@Test
-	@DatabaseSetup("ITBankTest-data.xml")
-	public void testDedit() {
-		given().contentType(ContentType.JSON)
-			.body("{ \"amount\": 20.0 }")
-			.when()
-				.post("/account/1000/debit")
-			.then()
-				.statusCode(HttpURLConnection.HTTP_OK)
-				.body("id", is(1000))
-				.body("currency", is("USD"))
-				.body("balance", is(150.00f))
-				.body("pendingBalance", is(-20.00f));
-	}
-	
-	@Test
 	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testUpdateExchangeRate() {
 		given().contentType(ContentType.JSON)
