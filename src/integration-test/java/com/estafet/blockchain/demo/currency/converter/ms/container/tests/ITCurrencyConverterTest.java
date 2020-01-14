@@ -82,7 +82,7 @@ public class ITCurrencyConverterTest {
 			.then()
 				.statusCode(HttpURLConnection.HTTP_OK)
 				.body("currency", is("LEV"))
-				.body("rate", is(2.456));
+				.body("rate", equalTo(2.456f));
 	}
 	
 	@Test
