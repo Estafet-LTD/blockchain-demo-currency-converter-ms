@@ -62,7 +62,7 @@ public class ITCurrencyConverterTest {
 	@Test
 	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void deleteExchangeRates() {
-		delete("exchange-rate").then()
+		delete("exchange-rates").then()
 		.statusCode(HttpURLConnection.HTTP_OK)
 		.body(is("Exchange Rates Deleted"));
 	}

@@ -56,7 +56,7 @@ public class CurrencyConverterController {
 		return new ResponseEntity<ExchangeRate>(currencyConverterService.updateExchangeRate(exchangeRate), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/rates")
+	@DeleteMapping("/exchange-rates")
 	public ResponseEntity<String> deleteAll() {
 		currencyConverterService.deleteAll();
 		return new ResponseEntity<String>("Exchange Rates Deleted", HttpStatus.OK);
