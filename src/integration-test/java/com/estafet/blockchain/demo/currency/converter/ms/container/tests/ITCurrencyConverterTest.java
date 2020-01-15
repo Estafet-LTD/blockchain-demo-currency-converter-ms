@@ -61,6 +61,14 @@ public class ITCurrencyConverterTest {
 
 	@Test
 	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
+	public void deleteExchangeRates() {
+		delete("exchange-rate").then()
+		.statusCode(HttpURLConnection.HTTP_OK)
+		.body(is("Exchange Rates Deleted"));
+	}
+	
+	@Test
+	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testUpdateExchangeRate() {
 		given().contentType(ContentType.JSON)
 			.body("{\"currency\": \"GBP\", \"rate\": 41.645 }")
