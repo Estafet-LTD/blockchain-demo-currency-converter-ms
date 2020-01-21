@@ -1,6 +1,6 @@
 package com.estafet.blockchain.demo.currency.converter.ms.container.tests;
 
-import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentMessage;
+import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
 import com.estafet.microservices.scrum.lib.commons.jms.TopicConsumer;
 
 public class BankPaymentConsumer extends TopicConsumer {
@@ -9,8 +9,8 @@ public class BankPaymentConsumer extends TopicConsumer {
 		super("currency.converter.out.topic");
 	}
 
-	public BankPaymentMessage consume() {
-		return super.consume(BankPaymentMessage.class);
+	public BankPaymentBlockChainMessage consume() {
+		return super.consume(BankPaymentBlockChainMessage.class);
 	}
 
 }

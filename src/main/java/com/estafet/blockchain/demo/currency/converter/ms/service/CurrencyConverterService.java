@@ -3,12 +3,12 @@ package com.estafet.blockchain.demo.currency.converter.ms.service;
 
 import java.util.List;
 
+import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentCurrencyConverterMessage;
-import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentMessage;
 import com.estafet.blockchain.demo.currency.converter.ms.dao.CurrencyConverterDAO;
 import com.estafet.blockchain.demo.currency.converter.ms.jms.BankPaymentProducer;
 import com.estafet.blockchain.demo.currency.converter.ms.model.ExchangeRate;
@@ -60,13 +60,13 @@ public class CurrencyConverterService {
 	
 
 	@Transactional(readOnly = true)
-	public BankPaymentMessage convert(BankPaymentCurrencyConverterMessage bankToCurrencyConvMessage) {
+	public BankPaymentBlockChainMessage convert(BankPaymentCurrencyConverterMessage bankToCurrencyConvMessage) {
 		ExchangeRate exchangeRate = currencyConverterDAO.getExchangeRate(bankToCurrencyConvMessage.getCurrency());
-		return bankPaymentProducer.sendMessage(new BankPaymentMessage(exchangeRate.convert(bankToCurrencyConvMessage.getCurrencyAmount()),
-				bankToCurrencyConvMessage.getWalletAddress(), bankToCurrencyConvMessage.getSignature(), bankToCurrencyConvMessage.getTransactionId()));
+
+		return bankPaymentProducer.sendMessage(new BankPaymentBlockChainMessage((int) Math.round(exchangeRate.convert(bankToCurrencyConvMessage.getCurrencyAmount())),
+				bankToCurrencyConvMessage.getWalletAddress(),
+				bankToCurrencyConvMessage.getSignature(), bankToCurrencyConvMessage.getTransactionId()));
 	}
-
-
 
 }
 

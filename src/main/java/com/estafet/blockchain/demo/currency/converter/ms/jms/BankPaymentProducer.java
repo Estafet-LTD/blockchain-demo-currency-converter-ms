@@ -5,12 +5,11 @@ import java.util.UUID;
 import javax.jms.JMSException;
 import javax.jms.Message;
 
+import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessagePostProcessor;
 import org.springframework.stereotype.Component;
-
-import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentMessage;
 
 @Component
 public class BankPaymentProducer {
@@ -18,7 +17,7 @@ public class BankPaymentProducer {
 	@Autowired 
 	private JmsTemplate jmsTemplate;
 	
-	public BankPaymentMessage sendMessage(BankPaymentMessage message) {
+	public BankPaymentBlockChainMessage sendMessage(BankPaymentBlockChainMessage message) {
 		jmsTemplate.setPubSubDomain(true);
 		jmsTemplate.convertAndSend("currency.converter.out.topic", message.toJSON(), new MessagePostProcessor() {
 			@Override

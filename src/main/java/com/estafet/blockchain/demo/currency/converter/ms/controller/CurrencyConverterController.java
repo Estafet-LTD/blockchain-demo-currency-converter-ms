@@ -2,6 +2,7 @@ package com.estafet.blockchain.demo.currency.converter.ms.controller;
 
 import java.util.List;
 
+import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,6 @@ import com.estafet.blockchain.demo.currency.converter.ms.model.API;
 import com.estafet.blockchain.demo.currency.converter.ms.model.ExchangeRate;
 import com.estafet.blockchain.demo.currency.converter.ms.service.CurrencyConverterService;
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentCurrencyConverterMessage;
-import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentMessage;
 
 
 @RestController
@@ -63,8 +63,8 @@ public class CurrencyConverterController {
 	}
 	
 	@PostMapping("/testCurrencyConverter")
-	public ResponseEntity<BankPaymentMessage> calculateSprints(@RequestBody BankPaymentCurrencyConverterMessage bankToCurrencyConvMessage) {
-		return new ResponseEntity<BankPaymentMessage>(currencyConverterService.convert(bankToCurrencyConvMessage), HttpStatus.OK);
+	public ResponseEntity<BankPaymentBlockChainMessage> calculateSprints(@RequestBody BankPaymentCurrencyConverterMessage bankToCurrencyConvMessage) {
+		return new ResponseEntity<BankPaymentBlockChainMessage>(currencyConverterService.convert(bankToCurrencyConvMessage), HttpStatus.OK);
 	}
 		
 }	

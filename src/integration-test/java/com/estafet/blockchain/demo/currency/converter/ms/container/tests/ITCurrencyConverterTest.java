@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,6 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentMessage;
 import com.estafet.microservices.scrum.lib.commons.properties.PropertyUtils;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -102,7 +102,7 @@ public class ITCurrencyConverterTest {
 				.post("/testCurrencyConverter")
 			.then()
 				.statusCode(HttpURLConnection.HTTP_OK)
-				.body("amount", equalTo(70.056f))
+				.body("amount", is(70))
 				.body("walletAddress", is("123456"))
 				.body("signature", is("314249"))
 				.body("transactionId", is("987654321"));
@@ -112,8 +112,8 @@ public class ITCurrencyConverterTest {
 	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testConsumeNewWalletCurrencyConverterMessage() {
 		CurrenyConverterTopicProducer.send("{\"currencyAmount\": 305678, \"currency\": \"USD\", \"walletAddress\": \"345678\", \"signature\": \"32423432\", \"transactionId\": \"2481632\" }");
-		BankPaymentMessage message = topic.consume();
-		assertEquals(258297.91, message.getAmount(),0.01);
+		BankPaymentBlockChainMessage message = topic.consume();
+		assertEquals(258298, message.getCryptoAmount());
 		assertEquals("345678", message.getWalletAddress());
 		assertEquals("32423432", message.getSignature());
 		assertEquals("2481632", message.getTransactionId());
