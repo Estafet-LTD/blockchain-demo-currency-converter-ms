@@ -102,7 +102,7 @@ public class ITCurrencyConverterTest {
 				.post("/testCurrencyConverter")
 			.then()
 				.statusCode(HttpURLConnection.HTTP_OK)
-				.body("amount", is(70))
+				.body("cryptoAmount", is(70))
 				.body("walletAddress", is("123456"))
 				.body("signature", is("314249"))
 				.body("transactionId", is("987654321"));

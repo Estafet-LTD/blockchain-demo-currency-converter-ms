@@ -62,7 +62,7 @@ public class CurrencyConverterController {
 		return new ResponseEntity<String>("Exchange Rates Deleted", HttpStatus.OK);
 	}
 	
-	@PostMapping("/testCurrencyConverter")
+	@PostMapping("/test-currencyConverter")
 	public ResponseEntity<BankPaymentBlockChainMessage> calculateSprints(@RequestBody BankPaymentCurrencyConverterMessage bankToCurrencyConvMessage) {
 		return new ResponseEntity<BankPaymentBlockChainMessage>(currencyConverterService.convert(bankToCurrencyConvMessage), HttpStatus.OK);
 	}
