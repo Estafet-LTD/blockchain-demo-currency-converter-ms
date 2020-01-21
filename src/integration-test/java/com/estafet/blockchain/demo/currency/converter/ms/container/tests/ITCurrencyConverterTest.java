@@ -99,7 +99,7 @@ public class ITCurrencyConverterTest {
 		given().contentType(ContentType.JSON)
 			.body("{\"currencyAmount\": 55.6, \"currency\": \"GBP\", \"walletAddress\": \"123456\", \"signature\": \"314249\", \"transactionId\": \"987654321\" }")
 			.when()
-				.post("/testCurrencyConverter")
+				.post("/test-currency-converter")
 			.then()
 				.statusCode(HttpURLConnection.HTTP_OK)
 				.body("cryptoAmount", is(70))
