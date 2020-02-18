@@ -1,13 +1,15 @@
 package com.estafet.blockchain.demo.currency.converter.ms.container.tests;
 
-import static org.junit.Assert.*;
+import static io.restassured.RestAssured.delete;
+import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 
 import java.net.HttpURLConnection;
 
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
-
-import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +19,8 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.estafet.microservices.scrum.lib.commons.properties.PropertyUtils;
+import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
+import com.estafet.openshift.boost.commons.lib.properties.PropertyUtils;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 

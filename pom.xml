@@ -23,6 +23,11 @@
 	</scm>
 	<dependencies>
 		<dependency>
+			<groupId>com.estafet.openshift.boost</groupId>
+			<artifactId>estafet-openshift-boost-commons-lib</artifactId>
+			<version>0.0.5</version>
+		</dependency>		
+		<dependency>
 			<groupId>com.estafet.blockchain.demo</groupId>
 			<artifactId>estafet-blockchain-demo-messages-lib</artifactId>
 			<version>0.0.9</version>
