@@ -10,33 +10,40 @@ import static org.junit.Assert.assertEquals;
 
 import java.net.HttpURLConnection;
 
+import com.estafet.blockchain.demo.currency.converter.ms.model.ExchangeRate;
+import com.estafet.blockchain.demo.currency.converter.ms.repository.ExchangeRateRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
 import com.estafet.openshift.boost.commons.lib.properties.PropertyUtils;
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class })
+@RunWith(SpringRunner.class)
+@ActiveProfiles(value = "test")
+@SpringBootTest
 public class ITCurrencyConverterTest {
 
 	BankPaymentConsumer topic = new BankPaymentConsumer();
+	@Autowired
+	private ExchangeRateRepository exchangeRateRepository;
 	
 	@Before
 	public void before() {
 		RestAssured.baseURI = PropertyUtils.instance().getProperty("CURRENCY_CONVERTER_SERVICE_URI");
+		ExchangeRate exchangeRate = new ExchangeRate("GBP",1.26);
+		exchangeRateRepository.save(exchangeRate);
+
+		ExchangeRate exchangeRate1 = new ExchangeRate("USD",0.845);
+		exchangeRateRepository.save(exchangeRate1);
 	}
 
 	@After
@@ -45,7 +52,6 @@ public class ITCurrencyConverterTest {
 	}
 
 	@Test
-	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testGetExchangeRate() {
 		get("exchange-rate/GBP").then()
 			.statusCode(HttpURLConnection.HTTP_OK)
@@ -54,7 +60,6 @@ public class ITCurrencyConverterTest {
 	}
 
 	@Test
-	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testGetExchangeRates() {
 		get("exchange-rates").then()
 		.statusCode(HttpURLConnection.HTTP_OK)
@@ -63,7 +68,6 @@ public class ITCurrencyConverterTest {
 	}
 
 	@Test
-	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void deleteExchangeRates() {
 		delete("exchange-rates").then()
 		.statusCode(HttpURLConnection.HTTP_OK)
@@ -71,7 +75,6 @@ public class ITCurrencyConverterTest {
 	}
 	
 	@Test
-	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testUpdateExchangeRate() {
 		given().contentType(ContentType.JSON)
 			.body("{\"currency\": \"GBP\", \"rate\": 41.645 }")
@@ -84,7 +87,6 @@ public class ITCurrencyConverterTest {
 	}
 	
 	@Test
-	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testCreateExchangeRate() {
 		given().contentType(ContentType.JSON)
 			.body("{\"currency\": \"LEV\", \"rate\": 2.456 }")
@@ -97,7 +99,6 @@ public class ITCurrencyConverterTest {
 	}
 	
 	@Test
-	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testCurrencyConverter() {
 		given().contentType(ContentType.JSON)
 			.body("{\"currencyAmount\": 55.6, \"currency\": \"GBP\", \"walletAddress\": \"123456\", \"signature\": \"314249\", \"transactionId\": \"987654321\" }")
@@ -112,7 +113,6 @@ public class ITCurrencyConverterTest {
 	}
 
 	@Test
-	@DatabaseSetup("ITCurrencyConverterTest-data.xml")
 	public void testConsumeNewWalletCurrencyConverterMessage() {
 		CurrenyConverterTopicProducer.send("{\"currencyAmount\": 305678, \"currency\": \"USD\", \"walletAddress\": \"345678\", \"signature\": \"32423432\", \"transactionId\": \"2481632\" }");
 		BankPaymentBlockChainMessage message = topic.consume();

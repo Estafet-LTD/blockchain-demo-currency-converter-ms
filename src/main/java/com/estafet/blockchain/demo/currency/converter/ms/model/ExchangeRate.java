@@ -1,30 +1,29 @@
 package com.estafet.blockchain.demo.currency.converter.ms.model;
 
+import com.couchbase.client.java.repository.annotation.Field;
+import com.couchbase.client.java.repository.annotation.Id;
+import org.springframework.data.couchbase.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "EXCHANGE_RATE")
-public class ExchangeRate {
+@Document
+public class ExchangeRate implements Serializable {
 
 	@Id
-	@Column(name = "CURRENCY", nullable = false)
+	@NotNull
 	private String currency;
 	
-	@Column(name = "RATE", nullable = false)
+	@Field
+	@NotNull
 	private Double rate;
 	
 	public double convert(double amount) {
 		return amount * rate;
 	}
-	
-
-
 	
 	public ExchangeRate() {
 	}
@@ -33,7 +32,6 @@ public class ExchangeRate {
 		this.currency = currency;
 		this.rate = rate;
 	}
-
 
 
 	public ExchangeRate addRate() {
@@ -65,21 +63,18 @@ public class ExchangeRate {
 			return exchangeRates;
 		
 	}
-/*
-	public static ExchangeRate fromJSON(String message) {
-		try {
-			return new ObjectMapper().readValue(message, ExchangeRate.class);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ExchangeRate that = (ExchangeRate) o;
+		return Objects.equals(currency, that.currency) &&
+				Objects.equals(rate, that.rate);
 	}
 
-	public String toJSON() {
-		try {
-			return new ObjectMapper().writeValueAsString(this);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	@Override
+	public int hashCode() {
+		return Objects.hash(currency, rate);
 	}
-*/
 }
