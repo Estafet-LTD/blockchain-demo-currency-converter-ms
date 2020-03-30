@@ -29,7 +29,7 @@ import io.restassured.http.ContentType;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles(value = "test")
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ITCurrencyConverterTest {
 
 	BankPaymentConsumer topic = new BankPaymentConsumer();
