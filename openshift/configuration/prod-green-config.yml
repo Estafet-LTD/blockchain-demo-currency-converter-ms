@@ -4,7 +4,7 @@ config_map:
   - name: CURRENCY_CONVERTER_MS_JDBC_URL
     value: jdbc:postgresql://postgresql.blockchain-demo-database.svc:5432/blockchain-demo-prod-currency-converter-ms
   - name: JAEGER_SERVICE_NAME
-    value: green-bank-ms
+    value: green-currency-converter-ms
   - name: JAEGER_SAMPLER_TYPE
     value: const
   - name: JAEGER_SAMPLER_PARAM
