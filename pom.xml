@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.estafet.blockchain.demo</groupId>
 	<artifactId>estafet-blockchain-demo-currency-converter-ms</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.1.2-SNAPSHOT</version>
 
 	<parent>
 		<groupId>com.estafet.openshift.boost</groupId>
