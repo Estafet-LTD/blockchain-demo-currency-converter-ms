@@ -79,21 +79,21 @@ objects:
       spec:
         containers:
           - env:
-              - name: CURRENCY_CONVERTER_MS_DB_PASSWORD
+              - name: COUCHBASE_PASSWORD
                 valueFrom:
                   secretKeyRef:
-                    name: "${ENV}${MICROSERVICE}" 
-                    key: CURRENCY_CONVERTER_MS_DB_PASSWORD
-              - name: CURRENCY_CONVERTER_MS_DB_USER
-                valueFrom:
-                  secretKeyRef:
-                    name: "${ENV}${MICROSERVICE}" 
-                    key: CURRENCY_CONVERTER_MS_DB_USER
-              - name: CURRENCY_CONVERTER_MS_JDBC_URL
+                    name: "${ENV}${MICROSERVICE}"
+                    key: COUCHBASE_PASSWORD
+              - name: COUCHBASE_HOST
                 valueFrom:
                   configMapKeyRef:
-                    name: "${ENV}${MICROSERVICE}" 
-                    key: CURRENCY_CONVERTER_MS_JDBC_URL
+                    name: "${ENV}${MICROSERVICE}"
+                    key: COUCHBASE_HOST
+              - name: COUCHBASE_BUCKET
+                valueFrom:
+                 configMapKeyRef:
+                   name: "${ENV}${MICROSERVICE}"
+                   key: COUCHBASE_BUCKET
               - name: JBOSS_A_MQ_BROKER_PASSWORD
                 valueFrom:
                   secretKeyRef:
