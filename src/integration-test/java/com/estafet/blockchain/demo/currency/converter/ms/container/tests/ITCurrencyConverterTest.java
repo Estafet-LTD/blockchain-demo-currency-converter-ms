@@ -18,7 +18,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
@@ -28,8 +27,8 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles(value = "test")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
+		properties = "classpath:integration-test.properties")
 public class ITCurrencyConverterTest {
 
 	BankPaymentConsumer topic = new BankPaymentConsumer();
