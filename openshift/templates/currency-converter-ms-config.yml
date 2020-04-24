@@ -79,36 +79,36 @@ objects:
       spec:
         containers:
           - env:
-              - name: COUCHBASE_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    name: "${ENV}${MICROSERVICE}"
-                    key: COUCHBASE_PASSWORD
-              - name: COUCHBASE_HOST
-                valueFrom:
-                  configMapKeyRef:
-                    name: "${ENV}${MICROSERVICE}"
-                    key: COUCHBASE_HOST
-              - name: COUCHBASE_BUCKET
-                valueFrom:
-                 configMapKeyRef:
-                   name: "${ENV}${MICROSERVICE}"
-                   key: COUCHBASE_BUCKET
               - name: JBOSS_A_MQ_BROKER_PASSWORD
                 valueFrom:
                   secretKeyRef:
-                    name: "${ENV}${MICROSERVICE}" 
+                    name: "${ENV}${MICROSERVICE}"
                     key: JBOSS_A_MQ_BROKER_PASSWORD
               - name: JBOSS_A_MQ_BROKER_URL
                 valueFrom:
                   configMapKeyRef:
-                    name: "${ENV}${MICROSERVICE}" 
+                    name: "${ENV}${MICROSERVICE}"
                     key: JBOSS_A_MQ_BROKER_URL
               - name: JBOSS_A_MQ_BROKER_USER
                 valueFrom:
                   secretKeyRef:
-                    name: "${ENV}${MICROSERVICE}" 
+                    name: "${ENV}${MICROSERVICE}"
                     key: JBOSS_A_MQ_BROKER_USER
+              - name: COUCHBASE_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: "${ENV}${MICROSERVICE}" 
+                    key: COUCHBASE_PASSWORD
+              - name: COUCHBASE_HOST
+                valueFrom:
+                  configMapKeyRef:
+                    name: "${ENV}${MICROSERVICE}" 
+                    key: COUCHBASE_HOST
+              - name: COUCHBASE_BUCKET
+                valueFrom:
+                  configMapKeyRef:
+                    name: "${ENV}${MICROSERVICE}" 
+                    key: COUCHBASE_BUCKET
               - name: JAEGER_SERVICE_NAME
                 valueFrom:
                   configMapKeyRef:
