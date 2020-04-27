@@ -1,0 +1,14 @@
+{
+  "documents": [
+    {
+      "_class": "com.estafet.blockchain.demo.currency.converter.ms.model.ExchangeRate",
+      "currency": "GBP",
+      "rate": "1.26"
+    },
+    {
+      "_class": "com.estafet.blockchain.demo.currency.converter.ms.model.ExchangeRate",
+      "currency": "USD",
+      "rate": "0.845"
+    }
+  ]
+}
