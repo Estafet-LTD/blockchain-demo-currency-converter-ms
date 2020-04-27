@@ -1,7 +1,5 @@
 package com.estafet.blockchain.demo.currency.converter.ms.container.tests;
 
-import com.estafet.blockchain.demo.currency.converter.ms.model.ExchangeRate;
-import com.estafet.blockchain.demo.currency.converter.ms.repository.ExchangeRateRepository;
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
 import com.estafet.openshift.boost.commons.lib.properties.PropertyUtils;
 import com.estafet.openshift.boost.couchbase.lib.annotation.BucketSetup;
@@ -12,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -22,7 +19,6 @@ import java.net.HttpURLConnection;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -30,17 +26,10 @@ import static org.junit.Assert.assertEquals;
 public class ITCurrencyConverterTest {
 
 	BankPaymentConsumer topic = new BankPaymentConsumer();
-	@Autowired
-	private ExchangeRateRepository exchangeRateRepository;
-	
+
 	@Before
 	public void before() {
 		RestAssured.baseURI = PropertyUtils.instance().getProperty("CURRENCY_CONVERTER_SERVICE_URI");
-		ExchangeRate exchangeRate = new ExchangeRate("GBP",1.26);
-		exchangeRateRepository.save(exchangeRate);
-
-		ExchangeRate exchangeRate1 = new ExchangeRate("USD",0.845);
-		exchangeRateRepository.save(exchangeRate1);
 	}
 
 	@After
