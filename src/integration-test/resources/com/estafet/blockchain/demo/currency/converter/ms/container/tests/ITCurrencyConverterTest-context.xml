@@ -13,4 +13,6 @@
 		<property name="password" value="welcome1"/>
 	</bean>
 
+	<bean class="com.estafet.blockchain.demo.currency.converter.ms.repository.ExchangeRateRepository"/>
+
 </beans>
