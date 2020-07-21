@@ -1,1 +1,1 @@
-# estafet-blockchain-demo-currency-converter-ms
+# blockchain-demo-currency-converter-ms
