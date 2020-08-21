@@ -1,6 +1,6 @@
 package com.estafet.blockchain.demo.currency.converter.ms.container.tests;
 
-import com.estafet.openshift.boost.commons.lib.jms.TopicProducer;
+import com.estafet.boostcd.jms.TopicProducer;
 
 public class CurrenyConverterTopicProducer extends TopicProducer {
 

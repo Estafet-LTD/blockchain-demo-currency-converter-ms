@@ -1,7 +1,7 @@
 package com.estafet.blockchain.demo.currency.converter.ms.container.tests;
 
 import com.estafet.blockchain.demo.messages.lib.bank.BankPaymentBlockChainMessage;
-import com.estafet.openshift.boost.commons.lib.jms.TopicConsumer;
+import com.estafet.boostcd.jms.TopicConsumer;
 
 public class BankPaymentConsumer extends TopicConsumer {
 
